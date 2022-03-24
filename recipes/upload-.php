@@ -1,0 +1,11 @@
+<?
+If($Picture!="none"){
+$PSize=filesize($Picture);
+$mysqlPicture=addslashes(fread(fopen($Picture,"r"),$PSize));
+mysql_connect($host,$username,$password2003)ordie("UnabletoconnecttoSQLserver");
+@mysql_select_db($db)ordie("Unabletoselectdatabase");
+mysql_query("INSERTINTOImages(Image)VALUES($mysqlPicture)")ordie("CantPerformQuery");
+}else{
+echo"Youdidnotuploadanypicture";
+}
+?>

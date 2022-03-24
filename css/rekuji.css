@@ -1,0 +1,18 @@
+.banner {
+    background: url("https://picsum.photos/1920/400/?random=10") no-repeat center center / cover;
+
+  }
+
+  .logo {
+    font-size: 40px;
+    color: black;
+  }
+
+  .aside_btn i{
+    margin-right: 5px;
+  }
+
+  .aside_btn.actives i {
+    transform: rotate(90deg);
+    transition:0.35s ease;
+  }

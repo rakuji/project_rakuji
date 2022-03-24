@@ -1,0 +1,152 @@
+<?php
+require __DIR__ . '/../parts/connect_db.php';
+$title = '食譜查詢';
+$systemName = "創意食譜系統";
+$systemitem = "食譜列表";
+$pageName = 'recipes_list';
+$perPage = 10;   //每一頁有幾筆
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1; //用戶要看的頁碼
+
+if ($page < 1) {
+    header('Location: recipes_list.php?page=1');
+    exit;
+}
+
+$t_sql = "SELECT COUNT(1) FROM creative_recipes"; //食譜
+$r_sql = "SELECT COUNT(1) FROM recipes_match"; //食材用量
+$n_sql = "SELECT COUNT(1) FROM nutrition_label"; //營養標示
+$member_sql = "SELECT COUNT(1) FROM member"; //會員系統
+
+//取得總筆數
+$totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
+
+
+$rows = []; //預設沒有資料
+
+$totalpages = 0;
+
+if ($totalRows) {
+    $totalPages = ceil($totalRows / $perPage);
+    if ($page > $totalPages) {
+        header("Location: recipes_list.php?page=$totalPages");
+        exit;
+    }
+    $sql =  sprintf("SELECT * FROM creative_recipes LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+    //總頁數
+    $rows = $pdo->query($sql)->fetchAll(); //拿到分頁資料
+
+}
+?>
+
+
+
+<?php include __DIR__ . '/html-head.php'; ?>
+
+
+<style>
+    form .readd .form-text {
+        color: red;
+    }
+</style>
+
+<!-- css -->
+<?php include __DIR__ . "/html-head.php"; ?>
+<?php include __DIR__ . "/banner.php"; ?>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- 左側選單欄 -->
+        <div class="col-12 col-md-2">
+            <?php include __DIR__ . '/aside1.php'; ?></div>
+        <!-- 主要內容區 -->
+        <div class="col-12 col-md-10">
+            <!-- 麵包屑 -->
+            <?php include __DIR__ . '/../parts/breadcrumb.php'; ?>
+            <!-- 列表 -->
+
+            <div class="col">
+                <div class="container">
+
+
+                </div>
+                <div class="row">
+                    <div class="d-flex flex-row-reverse">
+                        <form class="d-flex mb-3">
+                            <input class="form-control me-2" id="myInput" type="search" placeholder="請輸入關鍵字" aria-label="Search">
+                            <button class="btn btn-outline-danger search" type="button">Search</button>
+                        </form>
+                    </div>
+
+                    <!-- 列表 -->
+                    <?php include __DIR__ . '/recipes_list_navar.php'; ?>
+                    <div class="col">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">#</th>
+                                    <th scope="col">料理名稱</th>
+                                    <th scope="col">料理照片</th>
+                                    <th scope="col">調理方法</th>
+                                    <th scope="col">食譜所有人</th>
+                                    <th scope="col">建立時間</th>
+                                    <th scope="col" name="del-top">刪除</th>
+                                    <th scope="col">編輯</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?PHP foreach ($rows as $r) : ?>
+                                    <tr class="fw-bold">
+
+                                        <td><?= $r['cr_id'] ?></td>
+                                        <td><a href="recipes_list_box.php?cr_name=<?= $r['cr_name'] ?>"><?= $r['cr_name'] ?></a> </td>
+                                        <td><img src="<?= $r['photo_id'] ?>" height="100px" width="150px" alt="<?= $r['cr_name'] ?>"></td>
+                                        <td><?= $r['cm_text'] ?></td>
+                                        <td><?= $r['member_id'] ?></td>
+                                        <td><?= $r['created_at'] ?></td>
+                                        <td>
+                                            <a href="javascript: del_it(<?= $r['cr_id'] ?>)">
+                                                <i class="h3 fa-solid fa-trash-can"></i>
+                                        </td>
+                                        <td>
+                                            <a href="recipes-edit.php?cr_id=<?= $r['cr_id'] ?>"><i class="h3  fa-solid fa-pen"></i>
+                                        </td>
+
+                                    </tr>
+                                <?PHP endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 頁籤 -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item  <?= $page == 1 ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page - 1 ?>">&laquo;</a></li>
+
+                    <?php for ($i = $page - 5; $i <= $page + 5; $i++) :
+                        if ($i >= 1 and $i <= $totalPages) :
+                    ?>
+                            <li class="page-item <?= $page == $i ? 'active' : '' ?>"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+                    <?php endif;
+                    endfor; ?>
+
+                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page + 1 ?>">&raquo;</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function del_it(cr_id) {
+        if (confirm(`確定要刪除編號為 ${cr_id} 的資料嗎?`)) {
+            location.href = 'recipes-delete.php?cr_id=' + cr_id;
+        }
+    }
+</script>
+<?php include __DIR__ . '/script.php'; ?>
