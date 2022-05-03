@@ -1,12 +1,12 @@
 <div class="list-group">
 
     <div class="">
-        <a class="btn list-group-item list-group-item-action aside_btn <?= $pageName == 'inv_management' ? 'active' : '' ?>"  data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn list-group-item list-group-item-action aside_btn <?= $pageName == 'inv_management' ? 'active' : '' ?>" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-caret-right arrow1"></i>Hash Test
         </a>
         <div class="collapse" id="collapseExample">
             <div class="card-body">
-                <a href="#../hash/hash_test.php" class="list-group-item list-group-item-action <?= $pageName == 'pn_maintain' ? 'active' : '' ?>" >Hash Test</a>
+                <a href="#../hash/hash_test.php" class="list-group-item list-group-item-action <?= $pageName == 'pn_maintain' ? 'active' : '' ?>">Hash Test</a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
     </div>
 
     <div>
-        <a class="btn list-group-item list-group-item-action aside_btn <?= ($pageName == 'order-list'or $pageName == 'ab-add') ? 'active' : '' ?>" data-bs-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn list-group-item list-group-item-action aside_btn <?= ($pageName == 'order-list' or $pageName == 'ab-add') ? 'active' : '' ?>" data-bs-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa-solid fa-caret-right"></i>訂位管理系統
         </a>
         <div class="collapse" id="collapseExample7">
@@ -80,21 +80,16 @@
 
 </div>
 <script>
-const whenHashChange = function(){
-    let h = location.hash.slice(3);
-    console.log(h);
-    if(h){
-        $.get(h, function(data){
-            $('#content').html(data);
-        });
-    }
+    const whenHashChange = function() {
+        let h = location.hash.slice(1);
+        console.log(h);
+        if (h) {
+            $.get(h, function(data) {
+                $('#content').html(data);
+            });
+        }
 
-};
-whenHashChange();
-window.addEventListener('hashchange', whenHashChange);
-
-
-
-
-
+    };
+    // whenHashChange();
+    window.addEventListener('hashchange', whenHashChange);
 </script>

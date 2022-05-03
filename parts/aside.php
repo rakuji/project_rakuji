@@ -2,13 +2,13 @@
 
     <div class="">
         <a class="btn list-group-item list-group-item-action aside_btn" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fa-solid fa-caret-right arrow1"></i>庫存管理系統
+            <i class="fa-solid fa-caret-right arrow1"></i>基本資料系統
         </a>
         <div class="collapse" id="collapseExample">
             <div class="card-body">
                 <!-- <a href="#" class="list-group-item list-group-item-action">庫存查詢</a> -->
-                <a href="#" class="list-group-item list-group-item-action">庫存維護</a>
-                <a href="../inventory/pn_list.php" class="list-group-item list-group-item-action">品號維護</a>
+                <a href="#" class="list-group-item list-group-item-action">門市資訊維護</a>
+                <a href="../inventory/pn_list.php" class="list-group-item list-group-item-action">產品資訊維護</a>
                 <!-- <a href="#" class="list-group-item list-group-item-action">食材清單維護</a> -->
                 <a href="#" class="list-group-item list-group-item-action">統計報表</a>
             </div>
