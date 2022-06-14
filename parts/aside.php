@@ -60,6 +60,7 @@
         <div class="collapse" id="collapseExample5">
             <div class="card-body">
                 <a href="../HR/hr_list.php" class="list-group-item list-group-item-action <?= $pageName == 'hr_list' ? 'active' : '' ?>">員工列表</a>
+                <a href="../HR/hr_contact.php" class="list-group-item list-group-item-action <?= $pageName == 'hr_contact' ? 'active' : '' ?>">用餐回饋單</a>
             </div>
         </div>
     </div>
