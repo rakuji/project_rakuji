@@ -87,8 +87,8 @@ if ($totalRows) {
 
                             <td><?= $r['sid'] ?></td>
                             <td><?= $r['name'] ?></td>
-                            <td><?= $r['img_id'] ?></td>
-                            <td><img src="../imgs/<?= $r['img_id'] ?>"  alt="" width="120px"></td>
+                            <td><?= $r['imgid'] ?></td>
+                            <td><img src="../imgs/<?= $r['imgid'] ?>"  alt="" width="120px"></td>
                             <td><?= $r['timestart'] ?></td>
                             <td><?= $r['timeend'] ?></td>
                             <td><?= $r['content'] ?></td>
