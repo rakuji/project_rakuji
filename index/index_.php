@@ -18,8 +18,7 @@ $pageName = 'home';
 
         <!-- 主要內容區 -->
         <div class="col-12 col-md-10">
-            <!-- <h2>首頁</h2> -->
-            <!-- <?php include __DIR__ . '/../parts/breadcrumb.php'; ?> -->
+            <h2>首頁</h2>
         </div>
 
     </div>

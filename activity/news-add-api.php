@@ -23,7 +23,7 @@ $output['postData'] = $_POST;  // 讓前端做資料查看,資料是否一致
 
 
 $sql = "INSERT INTO `latest_news`(
-    `name`, `img_id`, `timestart` , `timeend`, `content`
+    `name`, `imgid`, `timestart` , `timeend`, `content`
       ) VALUES (?, ?, ?, ?, ?)";
 
 $stmt = $pdo->prepare($sql);

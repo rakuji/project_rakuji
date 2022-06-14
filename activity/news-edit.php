@@ -51,7 +51,7 @@ if(empty($row)){
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="img_id" class="form-label">*照片</label><br>
+                            <label for="imgid" class="form-label">*照片</label><br>
                             
                            <!-- 選擇照片 -->
 
@@ -61,7 +61,7 @@ if(empty($row)){
                                         <img src="" alt=""   id="myimg" width="355px"  height="200px">
                                         <br>
                                         <br>
-                                        <button type="button" onclick="img_id.click()">選擇照片</button>
+                                        <button type="button" onclick="imgid.click()">選擇照片</button>
                                         </br>
                                         <!-- 選擇照片 -->
 
@@ -94,7 +94,7 @@ if(empty($row)){
                         </form>
                                 <!-- 選擇照片 -->
                                 <form name="avatar_form" onsubmit="return false;" style="display: none;">
-                                    <input type="file" id="img_id" name="img_id"  accept="image/jpeg,image/png">
+                                    <input type="file" id="imgid" name="imgid"  accept="image/jpeg,image/png">
                                     
                                 </form>
                                 <!-- 選擇照片 -->  
@@ -172,7 +172,7 @@ if(empty($row)){
             })
         }
 
-        img_id.onchange = sendData;
+        imgid.onchange = sendData;
 
 
 </script>

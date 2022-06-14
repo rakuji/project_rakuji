@@ -26,8 +26,8 @@ $pageName = 'news-add';
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                        
-                                
+
+
 
                                 <h5 class="card-title">新增消息</h5>
                                 <form name="form1" method="post" novalidate onsubmit="checkForm(); return false;">
@@ -41,18 +41,18 @@ $pageName = 'news-add';
                                         <label for="" class="form-label">*照片</label>
                                         <!-- 選擇照片 -->
 
-                                        <form name="avatar_form" onsubmit="return false;">  
-                                        <input type="hidden" id="pic" name="pic" >
-                                        <br>
-                                        <img src="" alt=""   id="myimg" width="355px"  height="200px">
-                                        <br>
-                                        <br>
-                                        <button type="button" onclick="img_id.click()">選擇照片</button>
-                                        </br>
-                                        <!-- 選擇照片 -->
-                                        </div>
+                                        <form name="avatar_form" onsubmit="return false;">
+                                            <input type="hidden" id="pic" name="pic">
+                                            <br>
+                                            <img src="" alt="" id="myimg" width="355px" height="200px">
+                                            <br>
+                                            <br>
+                                            <button type="button" onclick="imgid.click()">選擇照片</button>
+                                            </br>
+                                            <!-- 選擇照片 -->
+                                    </div>
 
-                                        <div class="form-text"></div>
+                                    <div class="form-text"></div>
 
 
                                     <div class="mb-3">
@@ -78,10 +78,10 @@ $pageName = 'news-add';
                                 </form>
                                 <!-- 選擇照片 -->
                                 <form name="avatar_form" onsubmit="return false;" style="display: none;">
-                                    <input type="file" id="img_id" name="img_id"  accept="image/jpeg,image/png">
-                                    
+                                    <input type="file" id="imgid" name="imgid" accept="image/jpeg,image/png">
+
                                 </form>
-                                <!-- 選擇照片 -->  
+                                <!-- 選擇照片 -->
 
                             </div>
                         </div>
@@ -137,22 +137,21 @@ $pageName = 'news-add';
 
     }
 
-    function sendData(){
-            const fd = new FormData(document.avatar_form);
+    function sendData() {
+        const fd = new FormData(document.avatar_form);
 
-            fetch('upload-avatar.php', {
+        fetch('upload-avatar.php', {
                 method: 'POST',
                 body: fd
-            }).then(r=>r.json())
-            .then(obj=>{
+            }).then(r => r.json())
+            .then(obj => {
                 console.log(obj);
-                if(obj.success && obj.filename){
+                if (obj.success && obj.filename) {
                     myimg.src = '../imgs/' + obj.filename;
                     pic.value = obj.filename;
                 }
             })
-        }
+    }
 
-        img_id.onchange = sendData;
-  
+    imgid.onchange = sendData;
 </script>

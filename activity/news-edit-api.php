@@ -25,7 +25,7 @@ if(empty($_POST['sid']) or empty($_POST['name'])){
 
 $sql = "UPDATE `latest_news` SET  
         `name`=?,
-        `img_id`=?,
+        `imgid`=?,
         `timestart`=?,
         `timeend`=?,
         `content`=?
