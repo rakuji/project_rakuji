@@ -16,7 +16,7 @@ $r_sql = "SELECT COUNT(1) FROM nutrition_label"; //食材用量
 
 //取得總筆數
 $totalRows = $pdo->query($r_sql)->fetch(PDO::FETCH_NUM)[0];
-$systemName = "創意食譜系統";
+$systemName = `${$pageName}`;
 $systemitem = "食材列表";
 
 $rows = []; //預設沒有資料
